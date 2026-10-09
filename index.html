@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para mi chikibaby — Tomo 1 ❤️</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            hand: ['Caveat', 'cursive'],
+            script: ['Dancing Script', 'cursive'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            rose: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #fff0f3 0%, #ffe4e6 50%, #fecdd3 100%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    .polaroid-card {
+      will-change: transform;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+    }
+
+    .polaroid-card:hover {
+      transform: translateY(-12px) scale(1.04) rotate(0deg) !important;
+      z-index: 40 !important;
+      box-shadow: 0 20px 35px -10px rgba(225, 29, 72, 0.35), 0 10px 15px -5px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #ffe4e6;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #fb7185;
+      border-radius: 4px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+    .animate-heartbeat {
+      animation: heartbeat 1.5s infinite ease-in-out;
+    }
+
+    .washi-tape {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      border-left: 2px dashed rgba(244, 63, 94, 0.35);
+      border-right: 2px dashed rgba(244, 63, 94, 0.35);
+    }
+
+    /* Modal Animation */
+    .modal-enter {
+      animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-800 min-h-screen relative selection:bg-rose-200 selection:text-rose-700">
+
+  <!-- Interactive Background Canvas -->
+  <canvas id="heartsCanvas" class="fixed inset-0 pointer-events-none z-10"></canvas>
+
+  <!-- Top Audio Controller Button -->
+  <div class="fixed top-5 right-5 z-50 flex items-center gap-2">
+    <button id="musicBtn" onclick="toggleMusic()" class="flex items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-2.5 rounded-full shadow-lg border border-rose-200 text-rose-600 hover:bg-rose-50 transition-all hover:scale-105 active:scale-95 font-semibold text-sm">
+      <span id="musicIcon" class="text-base">🎵</span>
+      <span id="musicText">Música Romántica</span>
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header class="relative pt-12 pb-8 px-4 text-center z-20 max-w-4xl mx-auto">
+    <div class="inline-block mb-3 px-4 py-1.5 bg-rose-100 border border-rose-200 rounded-full text-rose-600 text-xs font-bold uppercase tracking-wider shadow-sm">
+      ✨ Nuestro Álbum Digital de Recuerdos ✨
+    </div>
+    
+    <h1 class="font-script text-5xl md:text-7xl text-rose-600 mb-2 drop-shadow-sm">
+      Para mi chikibaby
+    </h1>
+    <p class="font-hand text-2xl md:text-3xl text-rose-700/80 mb-6">
+      Tomo 1 — Cada instante a tu lado es mi regalo favorito ❤️
+    </p>
+
+    <!-- Love Dashboard -->
+    <div class="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-sm border border-rose-100 max-w-lg mx-auto flex justify-around items-center gap-2 text-center">
+      <div>
+        <span class="block font-bold text-2xl md:text-3xl text-rose-600">365+</span>
+        <span class="text-xs text-gray-500 uppercase font-semibold">Días Llenos de Amor</span>
+      </div>
+      <div class="h-8 w-px bg-rose-200"></div>
+      <div>
+        <span class="block font-bold text-2xl md:text-3xl text-rose-600 animate-heartbeat">∞</span>
+        <span class="text-xs text-gray-500 uppercase font-semibold">Sonrisas Compartidas</span>
+      </div>
+      <div class="h-8 w-px bg-rose-200"></div>
+      <div>
+        <span class="block font-bold text-2xl md:text-3xl text-rose-600">100%</span>
+        <span class="text-xs text-gray-500 uppercase font-semibold">Mi Persona Favorita</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 pb-24 relative z-20">
+    <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 pt-6">
+      
+      <!-- Card 1: Title Note Card -->
+      <div class="polaroid-card bg-white p-4 pt-6 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between h-80 relative cursor-pointer group" onclick="openNoteModal('Bienvenido a Nuestro Libro', 'Este rincón es un detalle pensado con todo el corazón. Cada foto guardada aquí representa lo hermoso que es caminar juntos. ¡Abre cada tarjeta y descubre nuestros recuerdos!')">
+        <div class="washi-tape absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 z-20"></div>
+        <div class="bg-gradient-to-br from-rose-100 to-pink-50 rounded h-52 flex flex-col items-center justify-center p-4 text-center border border-rose-200/50">
+          <span class="text-4xl mb-2 animate-heartbeat">💌</span>
+          <h2 class="font-hand text-3xl font-bold text-rose-600 leading-tight">Para mi chikibaby</h2>
+          <p class="font-hand text-xl text-rose-400 mt-1">Haz clic para abrir la nota...</p>
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Tomo 1 — Nuestra Historia</p>
+        </div>
+      </div>
+
+      <!-- Card 2: IMG_20240410_090715_883.webp -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openLightbox('IMG_20240410_090715_883.webp', 'Tu mirada e iluminación hacen que cada momento valga la pena.')">
+        <div class="washi-tape absolute -top-3 left-8 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-100 relative">
+          <img src="IMG_20240410_090715_883.webp" alt="Recuerdo 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/400x500/fecdd3/e11d48?text=Recuerdo+1+❤️';">
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Momentos Mágicos ✨</p>
+        </div>
+      </div>
+
+      <!-- Card 3: 1.webp -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openLightbox('1.webp', 'Contigo todo se siente más bonito, sencillo y lleno de vida.')">
+        <div class="washi-tape absolute -top-3 right-8 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-100 relative">
+          <img src="1.webp" alt="Recuerdo 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/400x500/fecdd3/e11d48?text=Recuerdo+2+❤️';">
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Sonrisa Hermosa 💕</p>
+        </div>
+      </div>
+
+      <!-- Card 4: 2.webp -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openLightbox('2.webp', 'Cada aventura a tu lado se convierte en mi lugar favorito.')">
+        <div class="washi-tape absolute -top-3 left-12 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-100 relative">
+          <img src="2.webp" alt="Recuerdo 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/400x500/fecdd3/e11d48?text=Recuerdo+3+❤️';">
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Complicidad 🥰</p>
+        </div>
+      </div>
+
+      <!-- Card 5: IMG_20240410_090147_402.webp -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openLightbox('IMG_20240410_090147_402.webp', 'Un día especial que quedó grabado para siempre en el corazón.')">
+        <div class="washi-tape absolute -top-3 right-6 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-100 relative">
+          <img src="IMG_20240410_090147_402.webp" alt="Recuerdo 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/400x500/fecdd3/e11d48?text=Recuerdo+4+❤️';">
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Día Inolvidable 🌸</p>
+        </div>
+      </div>
+
+      <!-- Card 6: 4.webp -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openLightbox('4.webp', 'Eres la persona más linda y detallista del mundo.')">
+        <div class="washi-tape absolute -top-3 left-6 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-100 relative">
+          <img src="4.webp" alt="Recuerdo 5" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/400x500/fecdd3/e11d48?text=Recuerdo+5+❤️';">
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Mi Persona Favorita 💖</p>
+        </div>
+      </div>
+
+      <!-- Card 7: IMG_20240410_090755_503.webp -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openLightbox('IMG_20240410_090755_503.webp', 'Grabar estos instantes es mi mejor tesoro.')">
+        <div class="washi-tape absolute -top-3 right-10 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-100 relative">
+          <img src="IMG_20240410_090755_503.webp" alt="Recuerdo 6" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/400x500/fecdd3/e11d48?text=Recuerdo+6+❤️';">
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Detalles de Amor 🌷</p>
+        </div>
+      </div>
+
+      <!-- Card 8: 6.webp -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openLightbox('6.webp', 'Gracias por regalarme la felicidad de reír contigo.')">
+        <div class="washi-tape absolute -top-3 left-10 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-100 relative">
+          <img src="6.webp" alt="Recuerdo 7" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/400x500/fecdd3/e11d48?text=Recuerdo+7+❤️';">
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Risas Contagiosas 😄</p>
+        </div>
+      </div>
+
+      <!-- Card 9: 7.webp -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openLightbox('7.webp', 'Cualquier lugar es especial si estás tú.')">
+        <div class="washi-tape absolute -top-3 right-6 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-100 relative">
+          <img src="7.webp" alt="Recuerdo 8" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/400x500/fecdd3/e11d48?text=Recuerdo+8+❤️';">
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Juntos Siempre 🏡</p>
+        </div>
+      </div>
+
+      <!-- Card 10: 8.webp -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openLightbox('8.webp', 'Un abrazo tuyo reinicia cualquier mal día.')">
+        <div class="washi-tape absolute -top-3 left-8 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-100 relative">
+          <img src="8.webp" alt="Recuerdo 9" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/400x500/fecdd3/e11d48?text=Recuerdo+9+❤️';">
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Mi Abrazo Seguro 🫂</p>
+        </div>
+      </div>
+
+      <!-- Card 11: 9.webp -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openLightbox('9.webp', 'Por muchísimas fotos más coleccionando memorias.')">
+        <div class="washi-tape absolute -top-3 right-8 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-100 relative">
+          <img src="9.webp" alt="Recuerdo 10" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/400x500/fecdd3/e11d48?text=Recuerdo+10+❤️';">
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Coleccionando Momentos 📸</p>
+        </div>
+      </div>
+
+      <!-- Card 12: 10.webp -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openLightbox('10.webp', 'Tomo 1 completo, pero nuestra historia sigue escribiéndose.')">
+        <div class="washi-tape absolute -top-3 left-10 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-100 relative">
+          <img src="10.webp" alt="Recuerdo 11" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/400x500/fecdd3/e11d48?text=Recuerdo+11+❤️';">
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Infinitas Historias ♾️</p>
+        </div>
+      </div>
+
+      <!-- Card 13: Video -->
+      <div class="polaroid-card bg-white p-3 pb-4 rounded-sm shadow-md border border-rose-100 flex flex-col justify-between relative cursor-pointer group" onclick="openVideoModal('VID-20240322-WA0045.mp4', 'Nuestro video favorito en movimiento ❤️')">
+        <div class="washi-tape absolute -top-3 right-10 w-20 h-6 z-20"></div>
+        <div class="overflow-hidden rounded-sm h-60 bg-gray-900 relative flex items-center justify-center">
+          <video class="w-full h-full object-cover opacity-80" preload="metadata">
+            <source src="VID-20240322-WA0045.mp4" type="video/mp4">
+          </video>
+          <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+            <div class="w-12 h-12 rounded-full bg-rose-600/90 text-white flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition-transform">
+              ▶
+            </div>
+          </div>
+        </div>
+        <div class="pt-3 text-center">
+          <p class="font-hand text-2xl text-gray-700 group-hover:text-rose-600 transition-colors">Video Especial 🎥</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="text-center pb-12 pt-4 relative z-20">
+    <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="inline-block px-6 py-2.5 bg-white/80 backdrop-blur-md rounded-full shadow-sm border border-rose-200 text-rose-600 font-bold hover:bg-rose-50 transition-colors">
+      Solo para ti, my love :) ❤️
+    </a>
+  </footer>
+
+  <!-- Note Modal Dialog -->
+  <div id="noteModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="modal-enter bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-rose-200 relative text-center">
+      <button onclick="closeNoteModal()" class="absolute top-3 right-3 text-gray-400 hover:text-rose-600 text-2xl font-bold w-8 h-8 rounded-full flex items-center justify-center transition-colors">&times;</button>
+      <div class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 animate-heartbeat text-rose-600">💌</div>
+      <h3 id="noteModalTitle" class="font-hand text-3xl font-bold text-rose-600 mb-3"></h3>
+      <p id="noteModalText" class="text-gray-700 leading-relaxed font-sans text-base mb-6"></p>
+      <button onclick="closeNoteModal()" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-2.5 rounded-xl shadow-md transition-colors">
+        Guardar en el Corazón ❤️
+      </button>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal Dialog -->
+  <div id="lightboxModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex-col items-center justify-center p-4">
+    <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white/80 hover:text-white text-4xl font-bold z-50 w-12 h-12 flex items-center justify-center">&times;</button>
+    
+    <div class="modal-enter max-w-3xl w-full flex flex-col items-center justify-center">
+      <div id="mediaContainer" class="max-h-[75vh] w-full flex items-center justify-center rounded-lg overflow-hidden">
+        <img id="lightboxImg" src="" alt="Vista previa" class="max-h-[75vh] max-w-full object-contain rounded-lg shadow-2xl">
+        <video id="lightboxVideo
